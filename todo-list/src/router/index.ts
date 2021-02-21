@@ -1,14 +1,27 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '../views/Home.vue'
+import Dashboard from '../views/Dashboard.vue'
+import Welcome from '../components/Welcome.vue'
+// import TodoList from '../components/todo/todo-list.vue'
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Dashboard',
+    component: Dashboard,
+    children:[
+      {
+        path:'',
+        props:{msg:"I am prop from the router 🦄"},
+        component: Welcome
+      },
+      // {
+      //   path:'todo',
+      //   component:TodoList
+      // }
+    ]
   },
   {
     path: '/about',
@@ -21,6 +34,7 @@ const routes: Array<RouteConfig> = [
 ]
 
 const router = new VueRouter({
+  mode:'hash',
   routes
 })
 
