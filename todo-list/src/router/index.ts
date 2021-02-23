@@ -2,14 +2,13 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Dashboard from '../views/Dashboard.vue'
 import Welcome from '../components/Welcome.vue'
-// import TodoList from '../components/todo/todo-list.vue'
+// import TodoList from '@/components/todo-list/todo-list.component.vue'
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
     path: '/',
-    name: 'Dashboard',
     component: Dashboard,
     children:[
       {
