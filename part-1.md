@@ -71,9 +71,7 @@ import { Task } from '@/models/Task';
 export default class TodoListComponent extends Vue {
   private tasks: Array<Task> = []
 
-  addTask(task: Task){
-    console.log("task",task);
-    
+  addTask(task: Task){    
     this.tasks.push(task);
   }
 
