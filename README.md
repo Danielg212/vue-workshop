@@ -1,4 +1,4 @@
-# vue-workshop
+# Vue & TS - workshop (class component)
 Welcome to Vue workshop! (part 1) :)
 
 In this tutorial we will lern the basics of awesoeme Vue.js lib + TS by creating a basic to-do list.
