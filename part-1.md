@@ -1,7 +1,8 @@
   # Hello and welcome to part 1 of Vue+TS workshop
   
-  In this part we will create the vue components
-  first of all, we want our todo app to have the following functionallity as a start:
+   In this part we will create the vue components.
+   
+   First of all, we want our todo app to have the following functionallity as a start:
   
   - adding a new task and mark task as done
   - display list of tasks
