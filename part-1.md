@@ -22,7 +22,76 @@ vgc generate component src/components/todo-list
 vgc -s src/components/todo-list/AddTask
 vgc -s src/components/todo-list/TaskItem
 vgc -s src/components/todo-list/TaskList
+vgc -s src/components/todo-list/TasksStatus
 ```
+
+now, we will add todo-list to the router.
+Add the following to *router/index.ts* : 
+
+```javascript
+import TodoList from '@/components/todo-list/todo-list.component.vue'
+
+...
+
+const routes: Array<RouteConfig> = [
+  {
+    ...
+     children:[
+      {
+       path:'todo',
+       component:TodoList
+      }
+      ...
+   }
+ ]
+```
+
+next, add Task model to *src/models/task.ts* (create it)
+
+```typescript
+export interface Task {
+  id:number;
+  done: boolean;
+  description: string;
+}
+```
+
+now, we will add the logic and build the realtions between the components:
+
+> In *todo-list.component.ts* add
+```typescript
+import AddTask from '@/components/todo-list/AddTask.vue'
+import TaskList from '@/components/todo-list/TaskList.vue'
+import TasksStatus from '@/components/todo-list/TasksStatus.vue'
+import { Task } from '@/models/Task';
+
+@Component({
+  components:{AddTask,TaskList,TasksStatus}
+})
+export default class TodoListComponent extends Vue {
+  private tasks: Array<Task> = []
+
+  addTask(task: Task){
+    console.log("task",task);
+    
+    this.tasks.push(task);
+  }
+
+  removeTask(id: number){
+    const taskIndex: number = this.tasks.findIndex(t => t.id == id)
+    taskIndex > -1 ? this.tasks.splice(taskIndex, 1) : new Error('Invalid index');
+  }
+
+  editTask(task: Task) {
+    const taskIndex: number = this.tasks.findIndex(t => t.id == task.id)
+    this.tasks[taskIndex] = task;
+}
+  
+}
+```
+
+
+
 
 
 
