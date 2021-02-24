@@ -82,6 +82,14 @@ export default class TodoListComponent extends Vue {
 
 }
 ```
+and in its html:
+```html
+<v-container style="max-width: 500px">
+  <add-task @addTaskEvent="addTask"></add-task>
+  <tasks-status :tasks="tasks"></tasks-status>
+  <task-list :tasks="tasks" @delete="removeTask"></task-list>
+</v-container>
+```
 
 
 
