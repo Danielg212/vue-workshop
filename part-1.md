@@ -224,8 +224,65 @@ export default class TaskListComponent extends Vue {
 </style>
 ```
 
-As you can see, In TaskListComponent we get the tasks container as props and we iterting over it and printing its items by passing a `task` object to `task-item` component as props. in `task-item` we also have an `@delete` event listener that emit to the parent 'delete' event with the item's id to delete.  
+As you can see, In TaskListComponent we get the tasks container as props and we iterting over it and printing its items by passing a `task` object to `task-item` component as props. In `task-item` we also have an `@delete` event listener that emit to the parent 'delete' event with the item's id to delete.  
 
+> In *TaskListComponent.vue* add:
+```vue
+<template>
+  <div class="task-item">
+    <v-list-item class="text-wrap">
+      <v-list-item-action>
+        <v-checkbox v-model="task.done" color="info darken-3">
+          <div
+            slot="label"
+            :class="(task.done && 'grey--text') || 'text--primary'"
+            class="ml-3"
+            v-text="task.description"
+          ></div>
+        </v-checkbox>
+      </v-list-item-action>
 
+      <v-spacer></v-spacer>
+      <v-scroll-x-transition class="indicators" group tag="div">
+        <span v-if="!task.done" class="btns" :key="'edit'">
+          <v-btn
+            @click.stop="$emit('delete', task.id)"
+            class="pa-2"
+            color="primary"
+            fab
+            x-small
+            dark
+          >
+            <v-icon>
+              delete
+            </v-icon>
+          </v-btn>
+        </span>
+
+        <v-icon key="'success'" v-if="task.done" color="success">
+          check
+        </v-icon>
+      </v-scroll-x-transition>
+    </v-list-item>
+  </div>
+</template>
+<script lang="ts">
+import { Task } from '@/models/Task'
+import Vue from 'vue'
+import Component from 'vue-class-component'
+import { Prop } from 'vue-property-decorator'
+
+@Component({})
+export default class TaskItemComponent extends Vue {
+  @Prop({ type: [Object] }) task!: Task
+}
+</script>
+
+<style scoped lang="scss">
+.task-item {
+}
+</style>
+
+```
 
   
