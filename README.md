@@ -4,6 +4,9 @@ Welcome to Vue workshop! (part 1) :)
 In this tutorial we will lern the basics of awesoeme Vue.js lib + TS by creating a basic to-do list.
 Please make sure to have the latest npm+node versions installed.
 
+<img src='./img/todo.png' alt='database' width='500' />
+
+
 ## Prerequisites:
    install vs-code or else IDE
    
