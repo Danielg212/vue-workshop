@@ -50,7 +50,7 @@ next, add Task model to *src/models/task.ts* (create it)
 
 ```typescript
 export interface Task {
-  id:number;
+  id:string;
   done: boolean;
   description: string;
 }
@@ -75,8 +75,8 @@ export default class TodoListComponent extends Vue {
     this.tasks.push(task);
   }
 
-  removeTask(id: number){
-    const taskIndex: number = this.tasks.findIndex(t => t.id == id)
+  removeTask(id: string){
+    const taskIndex: number = this.tasks.findIndex(t => t.id === id)
     taskIndex > -1 ? this.tasks.splice(taskIndex, 1) : new Error('Invalid index');
   }
 
