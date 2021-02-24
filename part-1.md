@@ -90,9 +90,141 @@ and in its html:
   <task-list :tasks="tasks" @delete="removeTask"></task-list>
 </v-container>
 ```
+In the TS file we add the functionallaty for adding task and removing task from our tasks container.
+In the html we passing the tasks array as props to `tasks-status` and `task-list`. Also, we add event handler when task added in `add-task` tag.
 
+*A small notice:* In Vue, `add-task` is allias for `AddTask` tag in the html...
 
+> In *AddTask.vue* add
 
+```vue
+<template>
+  <div class="add-task">
+    <v-text-field
+      v-model="task"
+      label="What are you working on?"
+      solo
+      @keydown.enter="task.trim().length && emitTask()"
+    >
+      <v-fade-transition slot="append">
+        <div>
+          <v-icon v-if="task" @click.stop="emitTask">
+            add_circle
+          </v-icon>
+        </div>
+      </v-fade-transition>
+    </v-text-field>
+  </div>
+</template>
+<script lang="ts">
+import Vue from 'vue'
+import Component from 'vue-class-component'
+import { v4 as uuid } from 'uuid'
+
+@Component({})
+export default class AddTaskComponent extends Vue {
+  public task = ''
+
+  emitTask() {
+    const id: string = uuid()
+    this.$emit('addTaskEvent', { id: id, description: this.task })
+    this.task = ''
+  }
+}
+</script>
+```
+We have` task` as a model for each item as we pass it with `v-model` for two-way data binding, this is how we create a reactivity in Vue.
+
+We also adding click event-listener each time the use add new task description, we handle this event by emmiting it to the parent.
+
+> In *TasksStatus.vue* add
+```vue
+<template>
+  <v-layout my-1 align-center>
+    <strong class="mx-3 info--text text--darken-3">
+      Remaining: {{ remainingTasks }}
+    </strong>
+
+    <strong class="mx-3 black--text"> Completed: {{ completedTasks }} </strong>
+
+    <v-spacer></v-spacer>
+    <v-progress-circular :value="progress" class="mr-2"></v-progress-circular>
+  </v-layout>
+</template>
+
+<script lang="ts">
+import { Task } from '@/models/Task'
+import Vue from 'vue'
+import Component from 'vue-class-component'
+import { Prop } from 'vue-property-decorator'
+
+@Component({})
+export default class TasksStatus extends Vue {
+  @Prop({ type: [Array], default: () => [] }) tasks!: Task[]
+
+  get remainingTasks(): number {
+    return this.tasks.filter(t => !t.done).length
+  }
+
+  get completedTasks(): number {
+    return this.tasks.filter(t => t.done).length
+  }
+
+  get progress(): number {
+    return this.completedTasks
+      ? (this.completedTasks / this.tasks.length) * 100
+      : 0
+  }
+}
+```
+
+we want to have some indicators about our progress with our tasks. so we have *computed functions* that change the view each time change detected in our data that we want to compute, in this case its the `tasks` prop (it's a copy since we are using `filter` that create a new array).
+
+> In *TaskListComponent.vue* add:
+```vue
+
+<template>
+  <div class="task-list">
+    <v-card v-if="tasks.length > 0">
+      <v-slide-y-transition class="py-0" group tag="v-list">
+        <template v-for="(task, i) in tasks">
+          <v-divider v-if="i !== 0" :key="`${i}-divider`"></v-divider>
+          <task-item
+            :task="task"
+            :key="`${i}-${task.text}`"
+            @delete="onDeleate"
+          ></task-item>
+        </template>
+      </v-slide-y-transition>
+    </v-card>
+  </div>
+</template>
+<script lang="ts">
+import { Task } from '@/models/Task'
+import Vue from 'vue'
+import Component from 'vue-class-component'
+import { Prop } from 'vue-property-decorator'
+import TaskItem from '@/components/todo-list/TaskItem.vue'
+
+@Component({
+  components: { TaskItem }
+})
+export default class TaskListComponent extends Vue {
+  @Prop({ type: [Array], default: () => [] }) tasks!: Task[]
+
+  onDeleate(val: string) {
+    this.$emit('delete', val)
+  }
+}
+</script>
+
+<style scoped lang="scss">
+.task-list {
+}
+</style>
+```
+
+As you can see, In TaskListComponent we get the tasks container as props and we iterting over it and printing its items by passing a `task` object to `task-item` component as props. in `task-item` we also have an `@delete` event listener that emit to the parent 'delete' event with the item's id to delete.  
 
 
 
