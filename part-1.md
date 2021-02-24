@@ -80,11 +80,6 @@ export default class TodoListComponent extends Vue {
     taskIndex > -1 ? this.tasks.splice(taskIndex, 1) : new Error('Invalid index');
   }
 
-  editTask(task: Task) {
-    const taskIndex: number = this.tasks.findIndex(t => t.id == task.id)
-    this.tasks[taskIndex] = task;
-}
-  
 }
 ```
 
