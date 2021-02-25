@@ -1,4 +1,4 @@
-# Vue & TS - workshop (class component)
+# Vue (2.6.11 - latest v2 realese) & TS - workshop (class component)
 Welcome to Vue workshop! :)
 
 In this tutorial we will lern the basics of the awesoeme Vue.js framework + TS by creating a basic to-do list.
