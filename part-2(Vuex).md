@@ -112,4 +112,44 @@ export default class AddTaskComponent extends Vue {
   }
 }
 ```
+and `TaskList.vue`
+```Typescript
+import { Getter, Action } from 'vuex-class'
+
+@Component({
+  components: { TaskItem }
+})
+export default class TaskListComponent extends Vue {
+  @Getter('tasks') tasks!: Array<Task>
+  @Action('removeTask') removeTask!: any
+
+  onDeleate(val: string) {
+    this.removeTask(val)
+  }
+}
+```
+and `TasksStatus.vue`
+```Typescript
+import { Getter } from 'vuex-class'
+
+@Component({})
+export default class TasksStatus extends Vue {
+  @Getter('tasks') tasks!: Array<Task>
+
+  get remainingTasks(): number {
+    return this.tasks.filter(t => !t.done).length
+  }
+
+  get completedTasks(): number {
+    return this.tasks.filter(t => t.done).length
+  }
+
+  get progress(): number {
+    return this.completedTasks
+      ? (this.completedTasks / this.tasks.length) * 100
+      : 0
+  }
+}
+```
+
 
