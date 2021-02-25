@@ -112,6 +112,5 @@ export default class AddTaskComponent extends Vue {
   }
 }
 </script>
-
-``
+```
 
