@@ -6,7 +6,7 @@
 Adding a [Vuex-store]( https://vuex.vuejs.org ) (TS) for having a shared state between all components in one shared global store.
 
 Let's do it!! 💪
-
+> ## creating our store
 Step 1: run the following vue cli commend: `vue add vuex`.
 Vue will add `store/store.ts` file and include it in the project in `main.ts` file.
 
@@ -21,7 +21,8 @@ export interface Result<T> {
 ```
 
 Step 3: Open store/index.ts file and and change the code
-```Typescriptimport Vue from 'vue'
+```Typescript 
+import Vue from 'vue'
 import Vuex, { StoreOptions } from 'vuex'
 import { Response } from './response'
 import { Task } from '@/models/Task'
@@ -69,3 +70,29 @@ The only way to actually change state in a Vuex store is by committing a mutatio
 
 ### Actions
 Actions are similar to mutations, the differences being that actions are asynchronous methods.
+
+> ## Linking our components with the store
+ Before we start, since we want to work with typescript and make our code elegant and crear as possible let's install *vuex binding helpers*.
+
+ let's run: `npm install --save vuex-class`.
+ 
+ now, let's add the binding annotations in our components and delete the "bad" old approach.
+ 
+ firs of all, let's delete the shared state we passing and maneging from the parent `todo-list.component.html` and `todo-list.component.ts`:
+```html
+<v-container style="max-width: 500px">
+  <add-task></add-task>
+  <tasks-status></tasks-status>
+  <task-list></task-list>
+</v-container>
+```
+```Typescript
+...
+@Component({
+  components: { AddTask, TaskList, TasksStatus }
+})
+export default class TodoListComponent extends Vue {
+}
+
+```
+
