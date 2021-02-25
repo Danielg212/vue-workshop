@@ -95,4 +95,23 @@ export default class TodoListComponent extends Vue {
 }
 
 ```
+now in `AddTask.vue`
+```Typescript
+import { Action } from 'vuex-class'
+
+@Component({})
+export default class AddTaskComponent extends Vue {
+  @Action('addTask') addTask!: any
+
+  public task = ''
+
+  emitTask() {
+    const id: string = uuid()
+    this.addTask({ id: id, description: this.task })
+    this.task = ''
+  }
+}
+</script>
+
+``
 
