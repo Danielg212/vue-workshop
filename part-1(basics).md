@@ -92,7 +92,8 @@ and in its html:
 ```
 In the TS file we add the functionallaty for adding task and removing task from our tasks container.
 In the html we passing the tasks array as props to `tasks-status` and `task-list`. Also, we add event handler when task added in `add-task` tag.
-There is another approche to share data and communicate between components by [creating a global event bus](https://www.digitalocean.com/community/tutorials/vuejs-global-event-bus) but in this tutorial we are going to use the traditionl options api.
+
+There is another approche to share data and communicate between components by [creating a global event bus](https://www.digitalocean.com/community/tutorials/vuejs-global-event-bus) but in this tutorial we are going to use the traditional options api.
 
 
 *A small notice:* In Vue, `add-task` is allias for `AddTask` tag in the html...
