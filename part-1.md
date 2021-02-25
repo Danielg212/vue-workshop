@@ -285,4 +285,8 @@ export default class TaskItemComponent extends Vue {
 
 ```
 
+# <b>Bonus! 🧙‍♂️<b>
+  
+> Add edit functionality for TaskItem description. (hint: use `v-if` and `v-else` for the description edit/read mode and emit another edit event)
+
   
