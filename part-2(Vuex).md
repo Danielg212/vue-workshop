@@ -152,4 +152,26 @@ export default class TasksStatus extends Vue {
 }
 ```
 
+> ## Persist our state 
+ what if we want to persist our state? thats easy! just install `vuex-persistedstate` by running `npm install --save vuex-persistedstate`
+ afterward we will add it in store/index.ts as plugin:
+ ```typescript
+ ...
+ import createPersistedState from 'vuex-persistedstate'
+   ...
+   const store: StoreOptions<Response<Task[]>> = {
+   state: {
+      ...
+     },
+  plugins: [createPersistedState({ storage: window.localStorage })] // you can use sessionStorage also
+}
+```
+
+# Thats it! 🎉🎉🎉🎉
+
+ 
+ 
+`
+
+
 
