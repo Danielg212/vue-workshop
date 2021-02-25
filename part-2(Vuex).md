@@ -167,7 +167,7 @@ export default class TasksStatus extends Vue {
 }
 ```
 
-# Thats it! 🎉🎉🎉🎉
+# That's it! 🎉🎉🎉🎉
 
  
  
