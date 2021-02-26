@@ -21,6 +21,6 @@ Please make sure to have the latest npm+node versions installed.
 Happy hacking! ⚡️
 
 
--- [part1](./part-1(basics).md)
--- [part2](./part-2(vuex).md)
+- [Part 1 - Basics](./part-1(basics).md)
+- [part 2 - Vuex](./part-2(Vuex).md)
 
