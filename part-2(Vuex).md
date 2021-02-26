@@ -10,9 +10,9 @@ Let's do it!! 💪
 Step 1: run the following vue cli commend: `vue add vuex`.
 Vue will add `store/store.ts` file and include it in the project in `main.ts` file.
 
-Step 2: In the store folder create Result Generic Model
+Step 2: In the store folder create Response Generic Model
 ```Typescript
-export interface Result<T> {
+export interface Response<T> {
     success: boolean;
     message?: string;
     errorCode?: number;
