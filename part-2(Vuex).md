@@ -97,6 +97,9 @@ export default class TodoListComponent extends Vue {
 ```
 Now, in `AddTask.vue` add that `@Action` annotation - this is a synthtic sugar for the store action instance.
 You can find more binding helpers in [vuex-class repo](https://github.com/ktsn/vuex-class).
+BTW, if you need to saperte you store to sub modules, you can use it by `@Action('addTask', {namespace: 'dashboard'}) addTask!: any;` for example.
+`
+
 ```Typescript
 import { Action } from 'vuex-class'
 
