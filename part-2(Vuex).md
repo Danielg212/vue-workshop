@@ -95,7 +95,8 @@ export default class TodoListComponent extends Vue {
 }
 
 ```
-now in `AddTask.vue`
+Now, in `AddTask.vue` add that `@Action` annotation - this is a synthtic sugar for the store action instance.
+You can find more binding helpers in [vuex-class repo](https://github.com/ktsn/vuex-class).
 ```Typescript
 import { Action } from 'vuex-class'
 
@@ -112,7 +113,7 @@ export default class AddTaskComponent extends Vue {
   }
 }
 ```
-and `TaskList.vue`
+And `TaskList.vue`
 ```Typescript
 import { Getter, Action } from 'vuex-class'
 
