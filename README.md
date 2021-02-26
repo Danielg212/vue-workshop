@@ -15,7 +15,12 @@ Please make sure to have the latest npm+node versions installed.
    install vue-cli
    
    install [vue-generate-component-typescript]( https://github.com/Kamar-Meddah/vue-generate-component-typescript)
+   
+   clone this repo
 
-Stay tuned! ⚡️
+Happy hacking! ⚡️
 
+
+-- [part1](./part-1(basics).md)
+-- [part2](./part-2(vuex).md)
 
